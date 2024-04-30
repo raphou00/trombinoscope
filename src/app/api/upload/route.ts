@@ -15,7 +15,7 @@ export const POST = async (req: NextRequest) => {
     
     try {
         await writeFile(
-            path.join(process.cwd(), "public/" + filename),
+            path.join(process.cwd(), "public/uploads/" + filename),
             buffer
         );
         return NextResponse.json({ Message: "Success", status: 201 });
