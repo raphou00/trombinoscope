@@ -61,6 +61,7 @@ const Pdf = () => (
 
             <View style={styles.section}>
 
+                {[1,2,3,4,5].map(() => (
                     <View style={styles.person}>
                         <Image src={background} style={styles.personImage}/>
                         <Text style={{ fontWeight: "bold" }}>Nick Gah</Text>
@@ -69,8 +70,7 @@ const Pdf = () => (
                         <Text>niga@gmail.com</Text>
                         <Text>0123456789</Text>
                     </View>
-                {/* {Array(1).map(() => (
-                ))} */}
+                ))}
 
             </View>
 
