@@ -14,5 +14,7 @@ const GET = async (req: NextRequest) => {
         }
     });
 
-    return NextResponse.json(persons);
+    return NextResponse.json(persons );
 }
+
+export { GET };
