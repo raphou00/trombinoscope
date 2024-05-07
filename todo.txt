@@ -1,7 +1,7 @@
 x Création de la liste des tâches @admin
 x Création de la planification initiale @admin
 x Création du schéma de la base de donnée @dev
-Création du projet nextjs avec les routes @dev
+x Création du projet nextjs avec les routes @dev
 x Création d'une page d'accueil avec un login @dev
 Ajout d'une page de base avec un formulaire pour ajouter des sections @dev
 Ajout d'un formulaire pour ajouter des fonctions @dev
@@ -10,7 +10,7 @@ Ajout de la liste des personnes @dev
 Permettre de modifier et supprimer des personnes @dev
 Ajout d'un bouton pour importer des personnes depuis un excel @dev
 Ajout d'un bouton pour exporter les personnes en pdf @dev
-Ajout d'une barre de recherche (nom, prénom, fonction, section) @dev
+x Ajout d'une barre de recherche (nom, prénom, fonction, section) @dev
 Modification de la table des personnes pour afficher simplement les personnes qui n'ont pas encore de photo @dev
 Faire un rapport technique @admin
 Création du powerpoint et préparation présentation @admin
