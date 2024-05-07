@@ -19,6 +19,13 @@ async function main() {
                                 { name: "Automatique", abrev: "auto" },
                             ]
                         }
+                    },
+                    persons: {
+                        createMany: {
+                            data: [
+                                { name: "Antho", photo: "https://picsum.photos/500", section: "" }
+                            ]
+                        }
                     }
                 }
             }

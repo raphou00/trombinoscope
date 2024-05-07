@@ -36,16 +36,6 @@ export default function Home() {
                 </label>
                 <input id="file" type="file" onChange={handleFileChange} />
             </div>
-            {file && (
-                <section>
-                    File details:
-                    <ul>
-                        <li>Name: {file.name}</li>
-                        <li>Type: {file.type}</li>
-                        <li>Size: {file.size} bytes</li>
-                    </ul>
-                </section>
-            )}
     
             {file && <button onClick={handleUpload}>Upload a file</button>}
 

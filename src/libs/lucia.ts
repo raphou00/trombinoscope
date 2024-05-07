@@ -19,7 +19,7 @@ const lucia = new Lucia(adapter, {
     },
     getUserAttributes: (user) => {
         return {
-            name: user.name,
+            name: user.name
         };
     }
 });
