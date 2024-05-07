@@ -11,7 +11,7 @@ const adapter = new PrismaAdapter(prisma.session, prisma.user);
 const lucia = new Lucia(adapter, {
     sessionExpiresIn: new TimeSpan(12, "w"),
     sessionCookie: {
-        name: "user.session",
+        name: "user_session",
         expires: true,
         attributes: {
             secure: process.env.NODE_ENV === "production"
@@ -20,9 +20,6 @@ const lucia = new Lucia(adapter, {
     getUserAttributes: (user) => {
         return {
             name: user.name,
-            email: user.email,
-            avatar: user.avatar,
-            verified: user.verified
         };
     }
 });
