@@ -4,9 +4,9 @@ import { useParams } from "next/navigation";
 import useSWR from "swr";
 import * as Icon from "lucide-react";
 import { useState } from "react";
+import {Csv} from './csv'
 import Modal from "@/components/modal";
 import Create from "./create";
-
 const Tromb = () => {
     const params = useParams<{ id: string }>();
     const { data: persons } = useSWR(`/api/tromb?id=${params.id}`);
@@ -28,6 +28,7 @@ const Tromb = () => {
 
     return (
         <div className="">
+            <Csv />
             <input type="text" onChange={search} className="border-neutral border rounded-lg m-3 p-2 outline-none" />
             <button className="btn btn-primary" onClick={() => setOpen(true)}><Icon.Croissant /></button>
 
