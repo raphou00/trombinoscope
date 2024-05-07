@@ -11,7 +11,7 @@ model User {
   id       String  @id @default(uuid())
   name     String  @unique
   password String
-  sessionS  Session[]
+  sessions  Session[]
   trombs   Tromb[]
 }
 

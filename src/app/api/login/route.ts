@@ -39,13 +39,13 @@ const POST = async (req: NextRequest) => {
         const session = await lucia.createSession(user.id, {});
         const sessionCookie = lucia.createSessionCookie(session.id);
         cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
+
+        return NextResponse.json({ success: true, message: "Letsgoooooo" });
     } catch (error) {
         console.log(error);
         
         return NextResponse.json({ success: false, error: "Something went wrong" });
     }
-    
-    redirect("/tromb");
 }
 
 export { POST };

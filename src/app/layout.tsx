@@ -19,11 +19,6 @@ const metadata: Metadata = {
 const Layout = async ({ children }: React.PropsWithChildren) => {
     const {session} = await getUser();
 
-    const logout = () => {
-        const sessionCookie = lucia.createBlankSessionCookie();
-        cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
-    }
-
     return (
         <html lang="en">
             <body className={inter.className}>
@@ -40,12 +35,11 @@ const Layout = async ({ children }: React.PropsWithChildren) => {
                        </Link>
 
                         {session && (
-                            <button className="btn btn-primary" onClick={async () => {
-                                "use server";
-                                logout();
-                            }}>
-                                <LogOut className="text-white" />
-                            </button>
+                            <form action="/api/logout">
+                                <button className="btn btn-primary" type="submit">
+                                    <LogOut className="text-white" />
+                                </button>
+                            </form>
                         )}
                     </header>
                     {children}
