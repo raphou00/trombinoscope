@@ -45,7 +45,7 @@ const POST = async (req: NextRequest) => {
         return NextResponse.json({ success: false, error: "Something went wrong" });
     }
     
-    return NextResponse.redirect("/tromb");
+    redirect("/tromb");
 }
 
 export { POST };

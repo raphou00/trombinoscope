@@ -13,8 +13,6 @@ const Login = () => {
     } = useForm<any>()
 
     const sumbit = async (data: any) => {
-        console.log(data);
-        
         const res = await fetch("/api/login", {
             method: "post",
             body: JSON.stringify(data)
