@@ -12,7 +12,7 @@ const Tromb = () => {
     const [personsFiltered, setPersonsFiltered] = useState(persons);
     
 
-    const search: React.FocusEventHandler<HTMLInputElement> = (e) => {
+    const search: React.ChangeEventHandler<HTMLInputElement> = (e) => {
         const term = e.target.value ?? ''
         setPersonsFiltered(persons.filter(person =>
             person.name.includes(term) ||
