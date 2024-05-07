@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import useSWR from "swr";
 import * as Icon from "lucide-react";
 import { useState } from "react";
+import {Csv} from './csv'
 
 const Tromb = () => {
     const params = useParams<{ id: string }>();
@@ -23,6 +24,7 @@ const Tromb = () => {
 
     return (
         <div className="">
+            <Csv />
             <input type="text" onChange={search} className="border-neutral border rounded-lg m-3 p-2 outline-none" />
             <ul role="list" className="divide-y divide-gray-100">
                 {personsFiltered && personsFiltered.map((person: any, index: number) => (

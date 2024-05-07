@@ -21,17 +21,21 @@ const Login = () => {
         const msg = await res.json();
         console.log(msg);
         
-        if (msg.errors) {
-            msg.errors.forEach((e: any) => {
-                toast.error(`${e.path[0]} ${e.message}`);
-            });
-
-            return;
+        if (!msg.success) {
+            if (msg.errors) {
+                msg.errors.forEach((e: any) => {
+                    toast.error(`${e.path[0]} ${e.message}`);
+                });
+                
+                return;
+            }
+            
+            if (msg.error) {
+                toast.error(msg.error);
+            }
         }
 
-        if (msg.error) {
-            toast.error(msg.error);
-        }
+        toast.success(msg.message)
     }
 
     return (
