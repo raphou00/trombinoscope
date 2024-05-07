@@ -1,12 +1,39 @@
 "use client";
 
 import Image from "next/image";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const Login = () => {
-    const sumbit = async () => {
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm<any>()
+
+    const sumbit = async (data: any) => {
+        console.log(data);
+        
         const res = await fetch("/api/login", {
-            method: "post"
+            method: "post",
+            body: JSON.stringify(data)
         });
+
+        const msg = await res.json();
+        console.log(msg);
+        
+        if (msg.errors) {
+            msg.errors.forEach((e: any) => {
+                toast.error(`${e.path[0]} ${e.message}`);
+            });
+
+            return;
+        }
+
+        if (msg.error) {
+            toast.error(msg.error);
+        }
     }
 
     return (
@@ -24,18 +51,17 @@ const Login = () => {
             </div>
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form className="space-y-6" onSubmit={sumbit}>
+                <form className="space-y-6" onSubmit={handleSubmit(sumbit)}>
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium leading-6">
-                            Adresse mail
+                        <label htmlFor="name" className="block text-sm font-medium leading-6">
+                            Nom
                         </label>
                         <div className="mt-2">
                             <input
-                                id="email"
-                                name="email"
-                                autoComplete="email"
-                                required
+                                id="name"
+                                autoComplete="name"
                                 className="input input-bordered w-full"
+                                {...register("name")}
                             />
                         </div>
                     </div>
@@ -54,11 +80,11 @@ const Login = () => {
                         <div className="mt-2">
                             <input
                                 id="password"
-                                name="password"
                                 type="password"
                                 autoComplete="current-password"
                                 required
                                 className="input input-bordered w-full"
+                                {...register("password")}
                             />
                         </div>
                     </div>

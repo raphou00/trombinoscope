@@ -11,7 +11,15 @@ model User {
   id       String  @id @default(uuid())
   name     String  @unique
   password String
+  sessionS  Session[]
   trombs   Tromb[]
+}
+
+model Session {
+  id        String   @id
+  userId    String
+  expiresAt DateTime
+  user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
 }
 
 model Tromb {
