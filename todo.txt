@@ -1,8 +1,8 @@
 x Création de la liste des tâches @admin
-Création de la planification initiale @admin
-Création du schéma de la base de donnée @dev
+x Création de la planification initiale @admin
+x Création du schéma de la base de donnée @dev
 Création du projet nextjs avec les routes @dev
-Création d'une page d'accueil avec un login @dev
+x Création d'une page d'accueil avec un login @dev
 Ajout d'une page de base avec un formulaire pour ajouter des sections @dev
 Ajout d'un formulaire pour ajouter des fonctions @dev
 Ajout d'un formulatire pour ajouter des personnes (nom, prénom, section, email, mobile, fonction, photo) @dev
