@@ -1,7 +1,7 @@
 import path from "path";
 import { NextResponse } from "next/server";
 import ReactPDF from "@react-pdf/renderer";
-import Pdf from "@/components/pdf";
+import Pdf from "@/components/model-pdf";
 
 export const GET = () => {
     const filename = `${crypto.randomUUID()}.pdf`;
