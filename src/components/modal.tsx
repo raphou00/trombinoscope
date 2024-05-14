@@ -1,15 +1,15 @@
 import { AnimatePresence, motion } from "framer-motion";
 
 
-const Modal = ({ children, isOpen, setIsOpen }: any) => {
+const Modal = ({ children, open, setOpen }: { children: React.ReactNode, open: boolean, setOpen: React.Dispatch<React.SetStateAction<boolean>> }) => {
   return (
     <AnimatePresence>
-      {isOpen && (
+      {open && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          onClick={() => setIsOpen(false)}
+          onClick={() => setOpen(false)}
           className="bg-slate-900/20 backdrop-blur p-8 fixed inset-0 z-50 grid place-items-center overflow-y-scroll cursor-pointer"
         >
           <motion.div
