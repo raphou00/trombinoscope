@@ -4,14 +4,18 @@ import prisma from "@/libs/prisma";
 const POST = async (req: NextRequest) => {
     const body = await req.json();
 
-    const { name }
+    const { nom, section, fonction, trombId, email, mobile } = body
+    const photo = '' // TODO
 
     const person = await prisma.person.create({
         data: {
-            name,
+            name: nom,
             photo,
             section,
-            trombId
+            trombId,
+            email,
+            tel: mobile,
+            function: fonction
         }
     })
 }
