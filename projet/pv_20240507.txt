@@ -1,0 +1,1 @@
+si upload dur plus que 1/2 seconde mettre loader
