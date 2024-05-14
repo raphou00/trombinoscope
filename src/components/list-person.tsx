@@ -40,7 +40,7 @@ const Tromb = ({ id }: { id: string }) => {
                     <input
                         type="text"
                         onChange={search}
-                        className="m-0 input input-bordered bg-base-200 border-neutral border rounded-lg m-3 max-w-full w-full outline-none"
+                        className="m-0 input input-bordered bg-base-200 border-neutral border rounded-lg max-w-full w-full outline-none"
                         placeholder="Rechercher..."
                     />
                     <button className="absolute bg-base-200 right-6" onClick={() => setOpen(true)}><Icon.Search /></button>

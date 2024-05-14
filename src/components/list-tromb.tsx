@@ -3,11 +3,13 @@
 import { Tromb } from "@prisma/client";
 import * as Icon from "lucide-react";
 import { useState } from "react";
-import Link from "next/link"
+import Modal from "./modal";
+import FormCreateTromb from "./form-create-tromb";
+import TrombEl from "./tromb";
 
-const Tromb = ({ trombs }: { trombs: Tromb[] }) => {
+const ListTromb = ({ trombs }: { trombs: Tromb[] }) => {
     const [trombsFiltered, setTrombsFiltered] = useState(trombs);
-    
+    const [open, setOpen] = useState(false);
 
     const search: React.ChangeEventHandler<HTMLInputElement> = (e) => {
         const term = e.target.value ?? ''
@@ -17,31 +19,37 @@ const Tromb = ({ trombs }: { trombs: Tromb[] }) => {
     }
 
     return (
-        <div className="">
-            <input type="text" onChange={search} className="border-neutral border rounded-lg m-3 p-2 outline-none" />
-            <ul role="list" className="divide-y divide-gray-100">
-                {trombsFiltered.map((tromb, index) => (
-                    <Link key={index} href={`/tromb/${tromb.id}`} className="flex justify-between gap-x-6 py-5 border border-neutral rounded-xl">
-                        <div className="flex min-w-0 gap-x-4">
-                            <div className="min-w-0 flex-auto">
-                                <p className="text-sm font-semibold leading-6 text-white">{tromb.name}</p>
-                            </div>
-                        </div>
-                        <div className="hidden sm:flex sm:flex-col sm:items-end">
-                            <div className="flex gap-x-1">
-                                <button className="btn btn-info">
-                                    <Icon.PenBox className="text-white" />
-                                </button>
-                                <button className="btn btn-error">
-                                    <Icon.Trash className="text-white" />
-                                </button>
-                            </div>
-                        </div>
-                    </Link>
+        <div className="max-w-5xl mx-auto">
+        
+            <div className="flex justify-center items-center gap-x-2 w-full">
+                <div className="flex items-center w-full relative py-5 ">
+                    <input
+                        type="text"
+                        onChange={search}
+                        className="m-0 input input-bordered bg-base-200 border-neutral border rounded-lg max-w-full w-full outline-none"
+                        placeholder="Rechercher..."
+                    />
+                    <button className="absolute bg-base-200 right-6" onClick={() => setOpen(true)}><Icon.Search /></button>
+                </div>
+
+                <div className="tooltip tooltip-bottom" data-tip="Créer une personne">
+                    <button className="btn btn-primary" onClick={() => setOpen(true)}>
+                        <Icon.PlusSquare />
+                    </button>
+                </div>
+            </div>
+
+            <Modal open={open} setOpen={setOpen}>
+                <FormCreateTromb />
+            </Modal>
+
+            <ul role="list" className="flex flex-col gap-y-2">
+                {trombsFiltered && trombsFiltered.map((tromb: Tromb, index: number) => (
+                    <TrombEl {...tromb} />
                 ))}
             </ul>
         </div>
     );
 }
 
-export default Tromb;
+export default ListTromb;

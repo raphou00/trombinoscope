@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
-const Create = ({ trombId }: { trombId: string }) => {
+const Create = () => {
     const {
         register,
         handleSubmit,
@@ -16,9 +16,6 @@ const Create = ({ trombId }: { trombId: string }) => {
         const formData = new FormData();
 
         Object.keys(data).forEach(key => formData.append(key, data[key]));
-
-        formData.append("photo", photo!);
-        formData.append("trombId", trombId);
 
         const res = await fetch("/api/person/create", {
             method: "post",

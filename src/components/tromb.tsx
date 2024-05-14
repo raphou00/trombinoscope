@@ -4,13 +4,14 @@ import { useState } from "react";
 import * as Icon from "lucide-react";
 import { toast } from "react-toastify";
 import Modal from "@/components/modal";
+import Link from "next/link";
 
-const PersonEl = (person: any) => {
+const TrombEl = (tromb: any) => {
     const [editOpen, setEditOpen] = useState(false);
     const [deleteOpen, setDeleteOpen] = useState(false);
 
     const handleDelete = async () => {
-        const res = await fetch(`/api/person/delete?id=${person.id}`);
+        const res = await fetch(`/api/tromb/delete?id=${tromb.id}`);
 
         const msg = await res.json();
                  
@@ -34,7 +35,7 @@ const PersonEl = (person: any) => {
                         </div>
                         <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                             <h3 className="text-base font-semibold leading-6 text-gray-900">
-                                Suprimmer l'utilisateur
+                                Suprimmer le trombinoscope
                             </h3>
                             <div className="mt-2">
                                 <p className="text-sm text-gray-500">
@@ -55,28 +56,27 @@ const PersonEl = (person: any) => {
                 </div>
             </Modal>
 
-            <div className="flex justify-between gap-x-6 px-2 py-1 border border-neutral rounded-box">
-                <div className="flex min-w-0 gap-x-4">
-                    <img className="h-12 w-12 flex-none rounded-full" src={person.photo} alt="" />
-                    <div className="min-w-0 flex-auto">
-                        <p className="text-sm font-semibold leading-6 text-white">{person.name}</p>
-                        <p className="mt-1 truncate text-sm leading-5 text-gray-200">{person.email}</p>
+            <Link href={`/tromb/${tromb.id}`}>
+                <div className="flex justify-between gap-x-6 px-5 py-1 border border-neutral rounded-box">
+                    <div className="flex min-w-0 gap-x-4">
+                        <div className="min-w-0 flex items-center">
+                            <p className="text-3xl font-bold leading-6 text-white">{tromb.name}</p>
+                        </div>
+                    </div>
+                    <div className="hidden sm:flex sm:flex-col sm:items-end">
+                        <div className="flex gap-x-1">
+                            <button className="btn btn-info" onClick={() => setEditOpen(!editOpen)}>
+                                <Icon.Edit3 className="text-white" />
+                            </button>
+                            <button className="btn btn-error" onClick={() => setEditOpen(!deleteOpen)}>
+                                <Icon.Trash className="text-white" />
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div className="flex items-center justify-center gap-x-2">{person.tel} - {person.section} - {person.function}</div>
-                <div className="hidden sm:flex sm:flex-col sm:items-end">
-                    <div className="flex gap-x-1">
-                        <button className="btn btn-info" onClick={() => setEditOpen(!editOpen)}>
-                            <Icon.Edit3 className="text-white" />
-                        </button>
-                        <button className="btn btn-error" onClick={() => setEditOpen(!deleteOpen)}>
-                            <Icon.Trash className="text-white" />
-                        </button>
-                    </div>
-                </div>
-            </div>
+            </Link>
         </>
     )
 }
 
-export default PersonEl;
+export default TrombEl;
