@@ -1,15 +1,16 @@
-export const Csv = () => {
+export const Csv = ({trombId}: {trombId:string}) => {
 
     const onFileChanged : React.ChangeEventHandler<HTMLInputElement> = async (e) => {
         if (!e.target.files || !e.target.files[0]) return
-        let formData = new FormData();
         const fr = new FileReader();
 
+        
         fr.onload = async () => {
+            let formData = new FormData();
             const a = fr.result;
-            console.log(a);
             
             formData.append("file", a!.toString())
+            formData.append('trombId', trombId)
             const res = await fetch("/api/uploadcsv", {
                 method: "post",
                 body: formData
