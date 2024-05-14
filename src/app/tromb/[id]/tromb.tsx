@@ -2,26 +2,33 @@
 
 import useSWR from "swr";
 import * as Icon from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "@/components/modal";
 import { Csv } from "./csv";
 import Create from "./create";
 
+const fetcher = (a: string) => fetch(a).then(e => e.json())
+
 const Tromb = ({ id }: { id: string }) => {
-    const { data: persons } = useSWR(`/api/tromb?id=${id}`);
-    const [personsFiltered, setPersonsFiltered] = useState(persons);
+    const { data } = useSWR(`/api/tromb?id=${id}`, fetcher);
+    const [personsFiltered, setPersonsFiltered] = useState(null);
     const [open, setOpen] = useState(false);
 
-    console.log(personsFiltered);
-
     const search: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-        const term = e.target.value ?? ""
-        setPersonsFiltered(persons.filter((person: any) =>
+        const term = e.target.value ?? "";
+        
+        if (!data) return
+        setPersonsFiltered(data.persons.filter((person: any) =>
             person.name.includes(term) ||
             person.section.includes(term) ||
             person.function.includes(term)
         ));
-    }
+    }    
+
+    useEffect(() => {
+        if (!data) return;
+        search({ data.persons });
+    }, [data]);
 
     return (
         <div className="max-w-5xl mx-auto">

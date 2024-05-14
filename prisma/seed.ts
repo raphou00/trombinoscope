@@ -23,7 +23,7 @@ async function main() {
                     persons: {
                         createMany: {
                             data: [
-                                { name: "Antho", photo: "https://picsum.photos/500", section: "" }
+                                { name: "Antho", photo: "https://picsum.photos/500", email: "anthoeptm@gmail.com", tel: "0123456789", function: "Sale merde", section: "Info" }
                             ]
                         }
                     }
@@ -35,8 +35,7 @@ async function main() {
         }
     });
 
-    console.log(a.trombs[0].id);
-    
+    console.log(a.trombs[0].id);1
 }
 
 main()

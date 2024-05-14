@@ -64,6 +64,13 @@ function main() {
                                                 { name: "Automatique", abrev: "auto" },
                                             ]
                                         }
+                                    },
+                                    persons: {
+                                        createMany: {
+                                            data: [
+                                                { name: "Antho", photo: "https://picsum.photos/500", email: "anthoeptm@gmail.com", tel: "0123456789", function: "Sale merde", section: "Info" }
+                                            ]
+                                        }
                                     }
                                 }
                             },
@@ -75,6 +82,7 @@ function main() {
                 case 2:
                     a = _e.sent();
                     console.log(a.trombs[0].id);
+                    1;
                     return [2 /*return*/];
             }
         });
