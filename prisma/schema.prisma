@@ -40,11 +40,13 @@ model Section {
 }
 
 model Person {
-  id      String @id @default(uuid())
-  name    String
-  section String
+  id       String @id @default(uuid())
+  name     String
+  email    String
+  tel      String
+  section  String
   function String
-  photo   String
-  trombId String
-  tromb   Tromb  @relation(fields: [trombId], references: [id])
+  photo    String
+  trombId  String
+  tromb    Tromb  @relation(fields: [trombId], references: [id])
 }

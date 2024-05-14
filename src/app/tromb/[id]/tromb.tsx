@@ -1,25 +1,22 @@
 "use client";
 
-import { useParams } from "next/navigation";
 import useSWR from "swr";
 import * as Icon from "lucide-react";
 import { useState } from "react";
-import {Csv} from './csv'
 import Modal from "@/components/modal";
+import { Csv } from "./csv";
 import Create from "./create";
-const Tromb = () => {
-    const params = useParams<{ id: string }>();
-    const { data: persons } = useSWR(`/api/tromb?id=${params.id}`);
 
+const Tromb = ({ id }: { id: string }) => {
+    const { data: persons } = useSWR(`/api/tromb?id=${id}`);
     const [personsFiltered, setPersonsFiltered] = useState(persons);
     const [open, setOpen] = useState(false);
 
     console.log(personsFiltered);
-    
 
     const search: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-        const term = e.target.value ?? ''
-        setPersonsFiltered(persons.filter(person =>
+        const term = e.target.value ?? ""
+        setPersonsFiltered(persons.filter((person: any) =>
             person.name.includes(term) ||
             person.section.includes(term) ||
             person.function.includes(term)
@@ -27,17 +24,24 @@ const Tromb = () => {
     }
 
     return (
-        <div className="">
-            <Csv />
-            <input type="text" onChange={search} className="border-neutral border rounded-lg m-3 p-2 outline-none" />
-            <button className="btn btn-primary" onClick={() => setOpen(true)}><Icon.Croissant /></button>
+        <div className="max-w-5xl mx-auto">
+            {/* <Csv /> */}
+            <div className="flex justify-center items-center w-full">
+                <div className="flex items-center relative">
+                    <input type="text" onChange={search} className="input input-bordered bg-base-200 border-neutral border rounded-lg m-3 outline-none" placeholder="Rechercher..." />
+                    <button className="absolute bg-base-200 right-6" onClick={() => setOpen(true)}><Icon.Search /></button>
+                </div>
+                <div className="tooltip tooltip-bottom" data-tip="Créer une personne">
+                    <button className="btn btn-primary" onClick={() => setOpen(true)}><Icon.Edit2 /></button>
+                </div>
+            </div>
 
             <Modal isOpen={open} setIsOpen={setOpen}>
                 <Create />
             </Modal>
 
             <ul role="list" className="divide-y divide-gray-100">
-                {personsFiltered && personsFiltered.map((person, index) => (
+                {personsFiltered && personsFiltered.map((person: any, index: number) => (
                     <li key={index} className="flex justify-between gap-x-6 py-5">
                         <div className="flex min-w-0 gap-x-4">
                             <img className="h-12 w-12 flex-none rounded-full" src={person.photo} alt="" />

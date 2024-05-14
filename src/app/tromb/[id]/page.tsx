@@ -2,13 +2,13 @@ import { getUser } from "@/libs/lucia";
 import { redirect } from "next/navigation";
 import Tromb from "./tromb";
 
-const Page = async () => {
+const Page = async ({ params }) => {
     const { user } = await getUser();
     
     if (!user) redirect("/login")
     
     return (
-        <Tromb />
+        <Tromb id={params.id} />
     );
 }
 

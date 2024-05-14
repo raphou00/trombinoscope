@@ -13,8 +13,6 @@ const GET = async (req: NextRequest) => {
         }
     });
 
-    console.log(persons);
-
     return NextResponse.json(persons );
 }
 

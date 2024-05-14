@@ -40,7 +40,7 @@ const Create = () => {
 
     return (
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" onSubmit={handleSubmit(sumbit)}>
+            <form className="space-y-2" onSubmit={handleSubmit(sumbit)}>
                 <div>
                     <label htmlFor="name" className="block text-sm font-medium leading-6">
                         Photo
@@ -58,6 +58,30 @@ const Create = () => {
                         <input
                             className="input input-bordered w-full"
                             {...register("name")}
+                        />
+                    </div>
+                </div>
+
+                <div>
+                    <label htmlFor="name" className="block text-sm font-medium leading-6">
+                        Téléphone
+                    </label>
+                    <div className="mt-2">
+                        <input
+                            className="input input-bordered w-full"
+                            {...register("tel")}
+                        />
+                    </div>
+                </div>
+
+                <div>
+                    <label htmlFor="name" className="block text-sm font-medium leading-6">
+                        E-Mail
+                    </label>
+                    <div className="mt-2">
+                        <input
+                            className="input input-bordered w-full"
+                            {...register("email")}
                         />
                     </div>
                 </div>
@@ -86,7 +110,7 @@ const Create = () => {
                     </div>
                 </div>
 
-                <div>
+                <div className="mt-5">
                     <button
                         type="submit"
                         className="btn btn-primary w-full"

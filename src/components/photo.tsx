@@ -38,10 +38,6 @@ export default function Home() {
             </div>
     
             {file && <button onClick={handleUpload}>Upload a file</button>}
-
-            <Webcam />
-
-            <button onClick={handlePdf}>pdf</button>
         </>
     );
 }
