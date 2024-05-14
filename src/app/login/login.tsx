@@ -8,8 +8,6 @@ const Login = () => {
     const {
         register,
         handleSubmit,
-        watch,
-        formState: { errors },
     } = useForm<any>()
 
     const sumbit = async (data: any) => {

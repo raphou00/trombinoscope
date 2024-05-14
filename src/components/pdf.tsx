@@ -1,16 +1,5 @@
-import React from "react";
-import { Page, Text, View, Document, StyleSheet, Image } from "@react-pdf/renderer";
 import path from "path";
-
-
-const user = [
-    {
-        image: "",
-        name: "",
-        section: ""
-    },
-];
-
+import { Page, Text, View, Document, StyleSheet, Image } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
     background: {
@@ -52,7 +41,6 @@ const styles = StyleSheet.create({
 });
 
 const background = path.join(process.cwd(), "public", "background.jpeg");
-
 
 const Pdf = () => (
     <Document>

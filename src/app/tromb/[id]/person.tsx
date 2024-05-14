@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import * as Icon from "lucide-react";
-import Modal from "@/components/modal";
 import { toast } from "react-toastify";
+import Modal from "@/components/modal";
 
 const PersonEl = (person: any) => {
     const [editOpen, setEditOpen] = useState(false);
@@ -27,7 +27,7 @@ const PersonEl = (person: any) => {
             </Modal>
 
             <Modal open={deleteOpen} setOpen={setDeleteOpen}>
-                <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                <div className="px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                     <div className="sm:flex sm:items-start">
                         <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
                             <Icon.AlertCircle className="h-6 w-6 text-red-600" />
@@ -67,7 +67,7 @@ const PersonEl = (person: any) => {
                 <div className="hidden sm:flex sm:flex-col sm:items-end">
                     <div className="flex gap-x-1">
                         <button className="btn btn-info" onClick={() => setEditOpen(!editOpen)}>
-                            <Icon.PenBox className="text-white" />
+                            <Icon.Edit3 className="text-white" />
                         </button>
                         <button className="btn btn-error" onClick={() => setEditOpen(!deleteOpen)}>
                             <Icon.Trash className="text-white" />

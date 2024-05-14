@@ -48,7 +48,7 @@ const Tromb = ({ id }: { id: string }) => {
 
                 <div className="tooltip tooltip-bottom" data-tip="Créer une personne">
                     <button className="btn btn-primary" onClick={() => setOpen(true)}>
-                        <Icon.Edit2 />
+                        <Icon.PlusSquare />
                     </button>
                 </div>
 
@@ -61,7 +61,7 @@ const Tromb = ({ id }: { id: string }) => {
             </div>
 
             <Modal open={open} setOpen={setOpen}>
-                <Create />
+                <Create trombId={id} />
             </Modal>
 
             <ul role="list" className="divide-y divide-gray-100">

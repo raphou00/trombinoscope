@@ -12,9 +12,9 @@ const Page = async () => {
     
 
     return (
-        <div>
+        <>
             <Tromb trombs={trombs} />
-        </div>
+        </>
     );
 }
 

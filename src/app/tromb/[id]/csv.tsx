@@ -11,7 +11,7 @@ export const Csv = ({trombId}: {trombId:string}) => {
             
             formData.append("file", a!.toString())
             formData.append('trombId', trombId)
-            const res = await fetch("/api/uploadcsv", {
+            const res = await fetch("/api/csv", {
                 method: "post",
                 body: formData
             });
