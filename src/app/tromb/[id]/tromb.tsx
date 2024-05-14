@@ -34,7 +34,7 @@ const Tromb = ({ id }: { id: string }) => {
 
     return (
         <div className="max-w-5xl mx-auto">
-            {/* <Csv /> */}
+            
             <div className="flex justify-center items-center gap-x-2 w-full">
                 <div className="flex items-center w-full relative py-5 ">
                     <input
@@ -50,6 +50,13 @@ const Tromb = ({ id }: { id: string }) => {
                     <button className="btn btn-primary" onClick={() => setOpen(true)}>
                         <Icon.Edit2 />
                     </button>
+                </div>
+
+                <div className="tooltip tooltip-bottom" data-tip="Importer .csv">
+                    <label className="btn btn-primary">
+                        <Icon.FileArchive />
+                        <Csv trombId={id} />
+                    </label>
                 </div>
             </div>
 

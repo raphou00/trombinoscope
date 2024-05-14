@@ -25,7 +25,7 @@ export const Csv = ({trombId}: {trombId:string}) => {
 
     return (
         <>
-            <input type="file" accept=".csv" onChange={onFileChanged} />
+            <input type="file" accept=".csv" onChange={onFileChanged} className="hidden" />
         </>
     )
 }
