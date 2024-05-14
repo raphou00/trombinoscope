@@ -1,6 +1,6 @@
 import { getUser } from "@/libs/lucia";
 import prisma from "@/libs/prisma";
-import Tromb from "./tromb";
+import Tromb from "../../components/list-tromb";
 
 const Page = async () => {
     const { user } = await getUser();

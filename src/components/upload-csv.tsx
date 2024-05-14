@@ -1,4 +1,4 @@
-export const Csv = ({trombId}: {trombId:string}) => {
+const UploadCsv = ({trombId}: {trombId:string}) => {
 
     const onFileChanged : React.ChangeEventHandler<HTMLInputElement> = async (e) => {
         if (!e.target.files || !e.target.files[0]) return
@@ -29,3 +29,5 @@ export const Csv = ({trombId}: {trombId:string}) => {
         </>
     )
 }
+
+export default UploadCsv;

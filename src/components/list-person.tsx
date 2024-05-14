@@ -5,9 +5,9 @@ import { Person } from "@prisma/client";
 import * as Icon from "lucide-react";
 import { useState, useEffect } from "react";
 import Modal from "@/components/modal";
-import { Csv } from "./csv";
-import Create from "./create";
-import PersonEl from "./person";
+import PersonEl from "@/components/person";
+import FormCreatePerson from "@/components/form-create-person";
+import UploadCsv from "@/components/upload-csv";
 
 const fetcher = (a: string) => fetch(a).then(e => e.json())
 
@@ -55,13 +55,13 @@ const Tromb = ({ id }: { id: string }) => {
                 <div className="tooltip tooltip-bottom" data-tip="Importer .csv">
                     <label className="btn btn-primary">
                         <Icon.FileArchive />
-                        <Csv trombId={id} />
+                        <UploadCsv trombId={id} />
                     </label>
                 </div>
             </div>
 
             <Modal open={open} setOpen={setOpen}>
-                <Create trombId={id} />
+                <FormCreatePerson trombId={id} />
             </Modal>
 
             <ul role="list" className="divide-y divide-gray-100">
