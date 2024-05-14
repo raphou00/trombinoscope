@@ -8,7 +8,7 @@ Ajout d'un formulaire pour ajouter des fonctions @dev
 Ajout d'un formulatire pour ajouter des personnes (nom, prénom, section, email, mobile, fonction, photo) @dev
 Ajout de la liste des personnes @dev
 Permettre de modifier et supprimer des personnes @dev
-Ajout d'un bouton pour importer des personnes depuis un excel @dev
+x Ajout d'un bouton pour importer des personnes depuis un excel @dev
 Ajout d'un bouton pour exporter les personnes en pdf @dev
 x Ajout d'une barre de recherche (nom, prénom, fonction, section) @dev
 Modification de la table des personnes pour afficher simplement les personnes qui n'ont pas encore de photo @dev

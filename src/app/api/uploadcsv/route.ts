@@ -13,7 +13,7 @@ export const POST = async ( req: NextRequest ) => {
 
     const data = file.toString().split('\n').map(el => el.replace('\r', '').split(';'))
     const header = data[0];
-    
+
     if (!header.every(r => ['Civilité', 'Nom', 'Prénom', 'Email Ecole', 'Section', 'Fonction', 'Mobile'].includes(r))) {
         return NextResponse.json({success: false, message: 'Bad header in csv'});
     }
@@ -41,5 +41,5 @@ export const POST = async ( req: NextRequest ) => {
 
     }
     
-    return NextResponse.json({success: true, message: ""});
+    return NextResponse.json({success: true, message: "Csv imported sucessfully"});
 }
