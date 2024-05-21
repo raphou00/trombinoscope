@@ -1,6 +1,7 @@
 "use client";
 
 import Photo from "@/components/photo";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -10,14 +11,14 @@ const Create = () => {
         register,
         handleSubmit,
     } = useForm<any>()
-    const [photo, setPhoto] = useState<File | null>();
+    const router = useRouter();
 
     const sumbit = async (data: any) => {
         const formData = new FormData();
 
         Object.keys(data).forEach(key => formData.append(key, data[key]));
 
-        const res = await fetch("/api/person/create", {
+        const res = await fetch("/api/tromb", {
             method: "post",
             body: formData
         });
@@ -39,19 +40,15 @@ const Create = () => {
         }
 
         toast.success(msg.message)
+
+        router.refresh();
     }
 
     return (
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form className="space-y-2" onSubmit={handleSubmit(sumbit)}>
                 <div>
-                    <label htmlFor="name" className="block text-center text-sm font-medium leading-6">
-                        Photo
-                    </label>
-                    <div className="mt-2 w-full">
-                        {/* @ts-ignore */}
-                        <Photo photo={photo} setPhoto={setPhoto} />
-                    </div>
+                    <h1 className="font-bold text-3xl">Créer un trombinoscope</h1>
                 </div>
 
                 <div>
@@ -60,63 +57,9 @@ const Create = () => {
                     </label>
                     <div className="mt-2">
                         <input
-                            placeholder="Eliott Boichot"
+                            placeholder="Super stylé..."
                             className="input input-bordered w-full"
                             {...register("name")}
-                        />
-                    </div>
-                </div>
-
-                <div>
-                    <label htmlFor="name" className="block text-sm font-medium leading-6">
-                        Téléphone
-                    </label>
-                    <div className="mt-2">
-                        <input
-                            type="tel"
-                            placeholder="0123456789"
-                            className="input input-bordered w-full"
-                            {...register("tel")}
-                        />
-                    </div>
-                </div>
-
-                <div>
-                    <label htmlFor="name" className="block text-sm font-medium leading-6">
-                        E-Mail
-                    </label>
-                    <div className="mt-2">
-                        <input
-                            type="email"
-                            placeholder="patrick.savioz@edu.vs.ch"
-                            className="input input-bordered w-full"
-                            {...register("email")}
-                        />
-                    </div>
-                </div>
-
-                <div>
-                    <label htmlFor="name" className="block text-sm font-medium leading-6">
-                        Section
-                    </label>
-                    <div className="mt-2">
-                        <input
-                            placeholder="Info"
-                            className="input input-bordered w-full"
-                            {...register("section")}
-                        />
-                    </div>
-                </div>
-
-                <div>
-                    <label htmlFor="name" className="block text-sm font-medium leading-6">
-                        Fonction
-                    </label>
-                    <div className="mt-2">
-                        <input
-                            placeholder="Eleve"
-                            className="input input-bordered w-full"
-                            {...register("function")}
                         />
                     </div>
                 </div>
@@ -126,7 +69,7 @@ const Create = () => {
                         type="submit"
                         className="btn btn-primary w-full"
                     >
-                        Create
+                        Créer
                     </button>
                 </div>
             </form>
