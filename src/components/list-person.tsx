@@ -61,7 +61,7 @@ const Tromb = ({ id }: { id: string }) => {
             </div>
 
             <Modal open={open} setOpen={setOpen}>
-                <FormCreatePerson trombId={id} person={undefined} />
+                <FormCreatePerson trombId={id} person={undefined} onSuccess={() => {}} />
             </Modal>
 
             <ul role="list" className="space-y-2">

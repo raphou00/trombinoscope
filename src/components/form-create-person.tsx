@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { Person } from "@prisma/client/edge";
 
-export const Create = ({ trombId, person }: { trombId: string, person: Person | undefined }) => {
+export const Create = ({ trombId, person, onSuccess }: { trombId: string, person: Person | undefined, onSuccess: () => void }) => {
     const {
         register,
         handleSubmit,
@@ -54,6 +54,7 @@ export const Create = ({ trombId, person }: { trombId: string, person: Person | 
         }
 
         toast.success(msg.message)
+        onSuccess()
     }
 
     return (

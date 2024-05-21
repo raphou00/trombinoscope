@@ -21,14 +21,18 @@ const PersonEl = (person: any) => {
         else toast.success(msg.message);
 
         setDeleteOpen(false)
-        // TODO: refresh user @eliott
+        person.onChange()
+    }
+
+    const updateFinished = () => {
+        setEditOpen(false)
         person.onChange()
     }
 
     return (
         <>
             <Modal open={editOpen} setOpen={setEditOpen} key={'edit'}>
-                <Create trombId={person.trombId} person={person} />
+                <Create trombId={person.trombId} person={person} onSuccess={updateFinished} />
             </Modal>
 
             <Modal open={deleteOpen} setOpen={setDeleteOpen} key={'delete'}>
