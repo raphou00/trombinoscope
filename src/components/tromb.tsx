@@ -41,10 +41,11 @@ const TrombEl = (tromb: any) => {
             if (msg.error) {
                 toast.error(msg.error);
             }
+        } else {
+            toast.success(msg.message)
         }
 
-        toast.success(msg.message)
-        router.refresh();
+        document.location.reload();
     }
 
     const handleDelete = async () => {
@@ -57,8 +58,9 @@ const TrombEl = (tromb: any) => {
         if (msg.error) toast.error(msg.error);
         else toast.success(msg.message);
 
-        setDeleteOpen(false)
-        router.refresh();
+        setDeleteOpen(false);
+        
+        document.location.reload();
     }
 
     return (
@@ -98,12 +100,12 @@ const TrombEl = (tromb: any) => {
             <Modal open={deleteOpen} setOpen={setDeleteOpen}>
                 <div className="px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                     <div className="sm:flex sm:items-start">
-                        <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                        <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10">
                             <Icon.AlertCircle className="h-6 w-6 text-red-600" />
                         </div>
                         <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                            <h3 className="text-base font-semibold leading-6 text-gray-900">
-                                Suprimmer le trombinoscope
+                            <h3 className="text-base font-semibold leading-6">
+                                Suprimer l'utilisateur
                             </h3>
                             <div className="mt-2">
                                 <p className="text-sm text-gray-500">
@@ -113,7 +115,7 @@ const TrombEl = (tromb: any) => {
                         </div>
                     </div>
                 </div>
-                <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                <div className="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                     <button
                         type="button"
                         className="btn btn-primary w-full"

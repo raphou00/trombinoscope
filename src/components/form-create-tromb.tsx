@@ -41,7 +41,7 @@ const Create = () => {
 
         toast.success(msg.message)
 
-        router.refresh();
+        document.location.reload();
     }
 
     return (
