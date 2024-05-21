@@ -4,44 +4,6 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
-import { Canvas } from "@react-three/fiber";
-import { Gltf, OrbitControls, Sky } from "@react-three/drei";
-import { Physics, RigidBody } from "@react-three/rapier";
-import { MeshBasicMaterial } from "three";
-
-const Scene = () => {
-    return (
-        <Canvas>
-            <Physics>
-                <Sky />
-                <OrbitControls />
-
-                <RigidBody
-                    colliders="cuboid"
-                    position={[0, 100, 90]}
-                >
-                    <mesh>
-                        <boxGeometry />
-                        <meshBasicMaterial color="red" />
-                    </mesh>
-                </RigidBody>                
-
-                <RigidBody
-                    colliders="trimesh"
-                    type="fixed"
-                    position={[0, -10, 100]}
-                    rotation={[0, -Math.PI, 0]}
-                >
-                    <Gltf
-                        src="/neuro_sama/scene.gltf"
-                    />
-                </RigidBody>
-
-            </Physics>
-        </Canvas>
-    );
-}
-
 const Login = () => {
     const {
         register,
@@ -76,9 +38,6 @@ const Login = () => {
 
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-            {/* <div className="fixed z-0 top-0 left-0 h-screen w-screen overflow-hidden rounded-lg">
-                <Scene />
-            </div> */}
 
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <Image
