@@ -17,13 +17,13 @@ const Tromb = ({ id }: { id: string }) => {
     const [open, setOpen] = useState(false);
 
     const search: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-        const term = e.target.value ?? "";
+        const term = e.target.value.toLowerCase() ?? "";
         
         if (!data) return
         setPersonsFiltered(data.persons.filter((person: Person) =>
-            person.name.includes(term) ||
-            person.section.includes(term) ||
-            person.function.includes(term)
+            person.name.toLowerCase().includes(term) ||
+            person.section.toLowerCase().includes(term) ||
+            person.function.toLowerCase().includes(term)
         ));
     }
 
@@ -31,6 +31,11 @@ const Tromb = ({ id }: { id: string }) => {
         if (!data) return;
         setPersonsFiltered(data.persons)
     }, [data]);
+
+    const onSuccess = () => {
+        setOpen(false)
+        mutate()
+    }
 
     return (
         <div className="max-w-5xl mx-auto">
@@ -61,7 +66,7 @@ const Tromb = ({ id }: { id: string }) => {
             </div>
 
             <Modal open={open} setOpen={setOpen}>
-                <FormCreatePerson trombId={id} person={undefined} onSuccess={() => {}} />
+                <FormCreatePerson trombId={id} person={undefined} onSuccess={onSuccess} />
             </Modal>
 
             <ul role="list" className="space-y-2">
