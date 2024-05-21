@@ -5,6 +5,56 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
+import { Canvas } from "@react-three/fiber";
+import { Gltf, OrbitControls, Sky } from "@react-three/drei";
+import { Physics, RigidBody } from "@react-three/rapier";
+import { MeshBasicMaterial } from "three";
+import Pdf from "@/components/model-pdf";
+
+const Scene = () => {
+    const a = async () => {
+        const res = await fetch("/api/pdf?id=f00aab30-9640-4fc6-86eb-6903f0f334ec")
+        const data = await res.json();
+
+    }
+    
+    return (
+        <div className="h-screen">
+
+        <button className="btn" onClick={a}>a</button>
+
+        {/* <Canvas>
+            <Physics>
+                <Sky />
+                <OrbitControls />
+
+                <RigidBody
+                    colliders="cuboid"
+                    position={[0, 100, 90]}
+                    >
+                    <mesh>
+                        <boxGeometry />
+                        <meshBasicMaterial color="red" />
+                    </mesh>
+                </RigidBody>                
+
+                <RigidBody
+                    colliders="trimesh"
+                    type="fixed"
+                    position={[0, -10, 100]}
+                    rotation={[0, -Math.PI, 0]}
+                    >
+                    <Gltf
+                        src="/neuro_sama/scene.gltf"
+                        />
+                </RigidBody>
+
+            </Physics>
+        </Canvas> */}
+        </div>
+    );
+}
+
 const Login = () => {
     const {
         register,
@@ -102,4 +152,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default Scene;

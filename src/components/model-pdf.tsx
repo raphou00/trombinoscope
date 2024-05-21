@@ -1,15 +1,8 @@
-import path from "path";
-import { Page, Text, View, Document, StyleSheet, Image } from "@react-pdf/renderer";
+import fs from "fs"
+import { Page, Text, View, Document, StyleSheet, Image, PDFViewer } from "@react-pdf/renderer";
+import { Person } from "@prisma/client";
 
 const styles = StyleSheet.create({
-    background: {
-        position: 'absolute',
-        minWidth: '100%',
-        minHeight: '100%',
-        display: 'flex',
-        height: '100%',
-        width: '100%',
-    },
     page: {
         flexDirection: "row",
         backgroundColor: "#fff",
@@ -40,25 +33,27 @@ const styles = StyleSheet.create({
     }
 });
 
-const background = path.join(process.cwd(), "public", "background.jpeg");
-
-const Pdf = () => (
+const Pdf: React.FC<{ tromb: Person[] }> = ({ tromb }) => (
     <Document>
         <Page size="A4" orientation="landscape" style={styles.page}>
-            <Image src={background} style={styles.background}/>
-
             <View style={styles.section}>
 
-                {[1,2,3,4,5].map(() => (
-                    <View style={styles.person}>
-                        <Image src={background} style={styles.personImage}/>
-                        <Text style={{ fontWeight: "bold" }}>Nick Gah</Text>
-                        <Text>Informaticien</Text>
-                        <Text>éléve</Text>
-                        <Text>niga@gmail.com</Text>
-                        <Text>0123456789</Text>
-                    </View>
-                ))}
+                {tromb.map((e, i) => {
+                    const p = e.photo ? `/uploads/photo/${e.photo}` : "default-avatar-icon.jpg";
+                    const bitmap = fs.readFileSync(`${__dirname}/public/${p}`)
+                    const a = Buffer.from(bitmap).toString("base64");
+
+                    return (
+                        <View key={i} style={styles.person}>
+                            <Image src={`data:image/${p.split(".").at(-1)};base64, ${a}`} style={styles.personImage}/>
+                            <Text style={{ fontWeight: "bold" }}>{e.name}</Text>
+                            <Text>{e.email}</Text>
+                            <Text>{e.tel}</Text>
+                            <Text>{e.function}</Text>
+                            <Text>{e.section}</Text>
+                        </View>
+                    )
+                })}
 
             </View>
 
