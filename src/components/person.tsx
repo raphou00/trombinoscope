@@ -66,7 +66,14 @@ const PersonEl = (person: any) => {
 
             <div className="flex justify-between gap-x-6 px-2 py-1 border border-neutral rounded-box">
                 <div className="flex min-w-0 gap-x-4">
-                    <img className="h-12 w-12 flex-none rounded-full" src={person.photo || '/default-avatar-icon.jpg'} alt="" />
+                    <div className="group relative cursor-pointer">
+                        <img className="h-12 w-12 flex-none rounded-full" src={person.photo || '/default-avatar-icon.jpg'} alt="" />
+                        {
+                            (!person.photo || person.photo.trim() === '') ? 
+                            <Icon.Plus className="absolute top-3 left-3 hidden group-hover:block text-black" /> :
+                            <Icon.ImageDown className="absolute top-3 left-3 hidden group-hover:block text-black" />
+                        }
+                    </div>
                     <div className="min-w-0 flex-auto">
                         <p className="text-sm font-semibold leading-6 text-white">{person.name}</p>
                         <p className="mt-1 truncate text-sm leading-5 text-gray-200">{person.email}</p>
