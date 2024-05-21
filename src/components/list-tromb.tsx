@@ -45,7 +45,7 @@ const ListTromb = ({ trombs }: { trombs: Tromb[] }) => {
 
             <ul role="list" className="flex flex-col gap-y-2">
                 {trombsFiltered && trombsFiltered.map((tromb: Tromb, index: number) => (
-                    <TrombEl {...tromb} />
+                    <TrombEl {...tromb} key={index} />
                 ))}
             </ul>
         </div>

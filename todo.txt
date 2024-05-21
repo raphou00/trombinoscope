@@ -6,7 +6,7 @@ x Création d'une page d'accueil avec un login @dev
 Ajout d'une page de base avec un formulaire pour ajouter des sections @dev
 Ajout d'un formulaire pour ajouter des fonctions @dev
 Ajout d'un formulatire pour ajouter des personnes (nom, prénom, section, email, mobile, fonction, photo) @dev
-Ajout de la liste des personnes @dev
+x Ajout de la liste des personnes @dev
 Permettre de modifier et supprimer des personnes @dev
 x Ajout d'un bouton pour importer des personnes depuis un excel @dev
 Ajout d'un bouton pour exporter les personnes en pdf @dev

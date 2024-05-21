@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
@@ -9,6 +10,7 @@ const Login = () => {
         register,
         handleSubmit,
     } = useForm<any>()
+    const router = useRouter()
 
     const sumbit = async (data: any) => {
         const res = await fetch("/api/login", {
@@ -34,6 +36,7 @@ const Login = () => {
         }
 
         toast.success(msg.message)
+        router.push('/')
     }
 
     return (

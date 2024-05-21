@@ -4,13 +4,14 @@ import Photo from "@/components/photo";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { Person } from "@prisma/client/edge";
 
-const Create = ({ trombId }: { trombId: string }) => {
+export const Create = ({ trombId, person }: { trombId: string, person: Person | undefined }) => {
     const {
         register,
         handleSubmit,
     } = useForm<any>()
-    const [photo, setPhoto] = useState<File | null>();
+    const [photo, setPhoto] = useState<File | null>(new File([new Blob([person?.photo as BlobPart])], 'default'));
 
     const sumbit = async (data: any) => {
         const formData = new FormData();
@@ -18,12 +19,22 @@ const Create = ({ trombId }: { trombId: string }) => {
         Object.keys(data).forEach(key => formData.append(key, data[key]));
 
         formData.append("photo", photo!);
-        formData.append("trombId", trombId);
+        let res;
+        if (!person) {
+            formData.append("trombId", trombId);
+            res = await fetch("/api/person/create", {
+                method: "post",
+                body: formData
+            });
+        }
+        else {
+            formData.append('personId', person.id)
+            res = await fetch("/api/person/update", {
+                method: "post",
+                body: formData
+            });
+        }
 
-        const res = await fetch("/api/person/create", {
-            method: "post",
-            body: formData
-        });
 
         const msg = await res.json();
         
@@ -65,13 +76,14 @@ const Create = ({ trombId }: { trombId: string }) => {
                         <input
                             placeholder="Eliott Boichot"
                             className="input input-bordered w-full"
+                            defaultValue={person?.name}
                             {...register("name")}
                         />
                     </div>
                 </div>
 
                 <div>
-                    <label htmlFor="name" className="block text-sm font-medium leading-6">
+                    <label htmlFor="name" className="block text-sm font-medium leading-6" defaultValue={person?.tel}>
                         Téléphone
                     </label>
                     <div className="mt-2">
@@ -79,13 +91,14 @@ const Create = ({ trombId }: { trombId: string }) => {
                             type="tel"
                             placeholder="0123456789"
                             className="input input-bordered w-full"
+                            defaultValue={person?.tel}
                             {...register("tel")}
                         />
                     </div>
                 </div>
 
                 <div>
-                    <label htmlFor="name" className="block text-sm font-medium leading-6">
+                    <label htmlFor="name" className="block text-sm font-medium leading-6" defaultValue={person?.email}>
                         E-Mail
                     </label>
                     <div className="mt-2">
@@ -93,32 +106,35 @@ const Create = ({ trombId }: { trombId: string }) => {
                             type="email"
                             placeholder="patrick.savioz@edu.vs.ch"
                             className="input input-bordered w-full"
+                            defaultValue={person?.email}
                             {...register("email")}
                         />
                     </div>
                 </div>
 
                 <div>
-                    <label htmlFor="name" className="block text-sm font-medium leading-6">
+                    <label htmlFor="name" className="block text-sm font-medium leading-6" defaultValue={person?.section}>
                         Section
                     </label>
                     <div className="mt-2">
                         <input
                             placeholder="Info"
                             className="input input-bordered w-full"
+                            defaultValue={person?.section}
                             {...register("section")}
                         />
                     </div>
                 </div>
 
                 <div>
-                    <label htmlFor="name" className="block text-sm font-medium leading-6">
+                    <label htmlFor="name" className="block text-sm font-medium leading-6" defaultValue={person?.function}>
                         Fonction
                     </label>
                     <div className="mt-2">
                         <input
                             placeholder="Eleve"
                             className="input input-bordered w-full"
+                            defaultValue={person?.function}
                             {...register("function")}
                         />
                     </div>
@@ -129,7 +145,7 @@ const Create = ({ trombId }: { trombId: string }) => {
                         type="submit"
                         className="btn btn-primary w-full"
                     >
-                        Create
+                        { person === undefined ? 'Create': 'Update'}
                     </button>
                 </div>
             </form>

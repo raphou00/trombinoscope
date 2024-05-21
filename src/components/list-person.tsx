@@ -61,12 +61,12 @@ const Tromb = ({ id }: { id: string }) => {
             </div>
 
             <Modal open={open} setOpen={setOpen}>
-                <FormCreatePerson trombId={id} />
+                <FormCreatePerson trombId={id} person={undefined} />
             </Modal>
 
-            <ul role="list" className="divide-y divide-gray-100">
+            <ul role="list" className="space-y-2">
                 {personsFiltered && personsFiltered.map((person: Person, index: number) => (
-                    <PersonEl {...person} />
+                    <PersonEl {...person} key={index} />
                 ))}
             </ul>
         </div>
