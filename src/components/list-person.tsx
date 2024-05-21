@@ -12,7 +12,7 @@ import UploadCsv from "@/components/upload-csv";
 const fetcher = (a: string) => fetch(a).then(e => e.json())
 
 const Tromb = ({ id }: { id: string }) => {
-    const { data } = useSWR(`/api/tromb?id=${id}`, fetcher, { refreshInterval: 100000 });
+    const { data, mutate } = useSWR(`/api/tromb?id=${id}`, fetcher, { refreshInterval: 100000 });
     const [personsFiltered, setPersonsFiltered] = useState<null | Person[]>(null);
     const [open, setOpen] = useState(false);
 
@@ -25,7 +25,7 @@ const Tromb = ({ id }: { id: string }) => {
             person.section.includes(term) ||
             person.function.includes(term)
         ));
-    }    
+    }
 
     useEffect(() => {
         if (!data) return;
@@ -66,7 +66,7 @@ const Tromb = ({ id }: { id: string }) => {
 
             <ul role="list" className="space-y-2">
                 {personsFiltered && personsFiltered.map((person: Person, index: number) => (
-                    <PersonEl {...person} key={index} />
+                    <PersonEl {...person} key={index} onChange={mutate} />
                 ))}
             </ul>
         </div>

@@ -22,6 +22,7 @@ const PersonEl = (person: any) => {
 
         setDeleteOpen(false)
         // TODO: refresh user @eliott
+        person.onChange()
     }
 
     return (
