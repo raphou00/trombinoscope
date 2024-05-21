@@ -17,13 +17,13 @@ const Tromb = ({ id }: { id: string }) => {
     const [open, setOpen] = useState(false);
 
     const search: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-        const term = e.target.value ?? "";
+        const term = e.target.value.toLowerCase() ?? "";
         
         if (!data) return
         setPersonsFiltered(data.persons.filter((person: Person) =>
-            person.name.includes(term) ||
-            person.section.includes(term) ||
-            person.function.includes(term)
+            person.name.toLowerCase().includes(term) ||
+            person.section.toLowerCase().includes(term) ||
+            person.function.toLowerCase().includes(term)
         ));
     }
 
