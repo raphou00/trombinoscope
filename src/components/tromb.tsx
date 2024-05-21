@@ -5,13 +5,52 @@ import * as Icon from "lucide-react";
 import { toast } from "react-toastify";
 import Modal from "@/components/modal";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 
 const TrombEl = (tromb: any) => {
     const [editOpen, setEditOpen] = useState(false);
     const [deleteOpen, setDeleteOpen] = useState(false);
+    const {
+        register,
+        handleSubmit,
+    } = useForm<any>()
+    const router = useRouter();
+
+    const handleEdit = async (data: any) => {
+        const formData = new FormData();
+
+        Object.keys(data).forEach(key => formData.append(key, data[key]));
+
+        const res = await fetch(`/api/tromb?id=${tromb.id}`, {
+            method: "put",
+            body: formData
+        });
+
+        const msg = await res.json();
+        
+        if (!msg.success) {
+            if (msg.errors) {
+                msg.errors.forEach((e: any) => {
+                    toast.error(`${e.path[0]} ${e.message}`);
+                });
+                
+                return;
+            }
+            
+            if (msg.error) {
+                toast.error(msg.error);
+            }
+        }
+
+        toast.success(msg.message)
+        router.refresh();
+    }
 
     const handleDelete = async () => {
-        const res = await fetch(`/api/tromb/delete?id=${tromb.id}`);
+        const res = await fetch(`/api/tromb?id=${tromb.id}`, {
+            method: "DELETE"
+        });
 
         const msg = await res.json();
                  
@@ -19,12 +58,41 @@ const TrombEl = (tromb: any) => {
         else toast.success(msg.message);
 
         setDeleteOpen(false)
+        router.refresh();
     }
 
     return (
         <>
             <Modal open={editOpen} setOpen={setEditOpen}>
+                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                    <form className="space-y-2" onSubmit={handleSubmit(handleEdit)}>
+                        <div>
+                            <h1 className="font-bold text-3xl">Modifier un trombinoscope</h1>
+                        </div>
 
+                        <div>
+                            <label htmlFor="name" className="block text-sm font-medium leading-6">
+                                Nom
+                            </label>
+                            <div className="mt-2">
+                                <input
+                                    placeholder="Super stylé..."
+                                    className="input input-bordered w-full"
+                                    {...register("name")}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="mt-5">
+                            <button
+                                type="submit"
+                                className="btn btn-primary w-full"
+                            >
+                                Créer
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </Modal>
 
             <Modal open={deleteOpen} setOpen={setDeleteOpen}>
@@ -56,25 +124,25 @@ const TrombEl = (tromb: any) => {
                 </div>
             </Modal>
 
-            <Link href={`/tromb/${tromb.id}`}>
-                <div className="flex justify-between gap-x-6 px-5 py-1 border border-neutral rounded-box">
-                    <div className="flex min-w-0 gap-x-4">
-                        <div className="min-w-0 flex items-center">
+            <div className="flex justify-between gap-x-6 px-5 py-1 border border-neutral rounded-box">
+                <div className="flex min-w-0 gap-x-4">
+                    <div className="min-w-0 flex items-center">
+                        <Link href={`/tromb/${tromb.id}`}>
                             <p className="text-3xl font-bold leading-6 text-white">{tromb.name}</p>
-                        </div>
-                    </div>
-                    <div className="hidden sm:flex sm:flex-col sm:items-end">
-                        <div className="flex gap-x-1">
-                            <button className="btn btn-info" onClick={() => setEditOpen(!editOpen)}>
-                                <Icon.Edit3 className="text-white" />
-                            </button>
-                            <button className="btn btn-error" onClick={() => setEditOpen(!deleteOpen)}>
-                                <Icon.Trash className="text-white" />
-                            </button>
-                        </div>
+                        </Link>
                     </div>
                 </div>
-            </Link>
+                <div className="hidden sm:flex sm:flex-col sm:items-end">
+                    <div className="flex gap-x-1">
+                        <button className="btn btn-info" onClick={() => setEditOpen(!editOpen)}>
+                            <Icon.Edit3 className="text-white" />
+                        </button>
+                        <button className="btn btn-error" onClick={() => setDeleteOpen(!deleteOpen)}>
+                            <Icon.Trash className="text-white" />
+                        </button>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }
