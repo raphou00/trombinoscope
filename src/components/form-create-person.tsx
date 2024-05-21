@@ -11,14 +11,15 @@ export const Create = ({ trombId, person }: { trombId: string, person: Person | 
         register,
         handleSubmit,
     } = useForm<any>()
-    const [photo, setPhoto] = useState<File | null>(new File([new Blob([person?.photo as BlobPart])], 'default'));
+    const [photo, setPhoto] = useState<File | null>(person?.photo ? new File([new Blob([person?.photo as BlobPart])], 'default'): null);
 
     const sumbit = async (data: any) => {
         const formData = new FormData();
 
         Object.keys(data).forEach(key => formData.append(key, data[key]));
 
-        formData.append("photo", photo!);
+        if (photo)
+            formData.append("photo", photo);
         let res;
         if (!person) {
             formData.append("trombId", trombId);
