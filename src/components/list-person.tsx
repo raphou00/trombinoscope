@@ -32,6 +32,11 @@ const Tromb = ({ id }: { id: string }) => {
         setPersonsFiltered(data.persons)
     }, [data]);
 
+    const onSuccess = () => {
+        setOpen(false)
+        mutate()
+    }
+
     return (
         <div className="max-w-5xl mx-auto">
             
@@ -61,7 +66,7 @@ const Tromb = ({ id }: { id: string }) => {
             </div>
 
             <Modal open={open} setOpen={setOpen}>
-                <FormCreatePerson trombId={id} person={undefined} onSuccess={() => {}} />
+                <FormCreatePerson trombId={id} person={undefined} onSuccess={onSuccess} />
             </Modal>
 
             <ul role="list" className="space-y-2">
