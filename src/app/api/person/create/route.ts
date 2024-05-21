@@ -48,7 +48,7 @@ const POST = async (req: NextRequest) => {
                 section: section,
                 function: fonction,
                 trombId: trombId,
-                photo: filename,
+                photo: '/uploads/photos/'+filename,
             }
         });
     } catch (error) {
