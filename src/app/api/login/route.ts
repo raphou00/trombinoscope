@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
-import { verify } from "argon2";
+import { compare } from "bcrypt";
 import { z } from "zod";
 import prisma from "@/libs/prisma";
 import lucia from "@/libs/lucia";
@@ -32,7 +32,7 @@ const POST = async (req: NextRequest) => {
             return NextResponse.json({ success: false, error: "Invalid credentials" });
         }
 
-        if (!user || !(await verify(user.password!, password))) {
+        if (!user || !(await compare(user.password!, password))) {
             return NextResponse.json({ success: false, error: "Invalid credentials" });
         }
 

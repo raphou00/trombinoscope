@@ -8,7 +8,9 @@ const Page = async ({ params }: any) => {
     if (!user) redirect("/login")
     
     return (
-        <Tromb id={params.id} />
+        <>
+            <Tromb id={params.id} />
+        </>
     );
 }
 

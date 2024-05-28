@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { hash } from "argon2";
+import { hash } from "bcrypt";
 
 const prisma = new PrismaClient();
 
@@ -7,7 +7,7 @@ async function main() {
     const a = await prisma.user.create({
         data: {
             name: "admin",
-            password: await hash("1234"),
+            password: await hash("1234", 8),
             trombs: {
                 create: {
                     name: "eptm",

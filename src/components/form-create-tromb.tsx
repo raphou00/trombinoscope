@@ -48,7 +48,7 @@ const Create = () => {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form className="space-y-2" onSubmit={handleSubmit(sumbit)}>
                 <div>
-                    <h1 className="font-bold text-3xl">Créer un trombinoscope</h1>
+                    <h1 className="font-bold text-3xl text-center">Créer un trombinoscope</h1>
                 </div>
 
                 <div>

@@ -61,6 +61,10 @@ export const Create = ({ trombId, person, onSuccess }: { trombId: string, person
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form className="space-y-2" onSubmit={handleSubmit(sumbit)}>
                 <div>
+                    <h1 className="font-bold text-3xl text-center">{person ? "Modifier" : "Ajouter"} une personne</h1>
+                </div>
+
+                <div>
                     <label htmlFor="name" className="block text-center text-sm font-medium leading-6">
                         Photo
                     </label>
