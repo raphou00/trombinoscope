@@ -32,7 +32,7 @@ const POST = async (req: NextRequest) => {
             return NextResponse.json({ success: false, error: "Invalid credentials" });
         }
 
-        if (!user || !(await compare(user.password!, password))) {
+        if (!user || !(await compare(password, user.password))) {
             return NextResponse.json({ success: false, error: "Invalid credentials" });
         }
 
