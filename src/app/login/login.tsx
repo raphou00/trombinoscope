@@ -143,7 +143,7 @@ const Login = () => {
                             type="submit"
                             className="btn btn-primary w-full"
                         >
-                            Sign in
+                            Login
                         </button>
                     </div>
                 </form>
@@ -152,4 +152,4 @@ const Login = () => {
     )
 }
 
-export default Scene;
+export default Login;
