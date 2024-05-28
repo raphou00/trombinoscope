@@ -4,6 +4,12 @@ import { hash } from "bcrypt";
 const prisma = new PrismaClient();
 
 async function main() {
+    await prisma.user.deleteMany();
+    await prisma.tromb.deleteMany();
+    await prisma.section.deleteMany();
+    await prisma.session.deleteMany();
+    await prisma.session.deleteMany();
+
     const a = await prisma.user.create({
         data: {
             name: "admin",
