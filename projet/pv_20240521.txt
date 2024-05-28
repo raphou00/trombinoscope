@@ -1,2 +1,0 @@
-Faire une procédure pour changer le contenu du site
-Faire une procédure pour supprimer des choses de la bd (rgpd)
