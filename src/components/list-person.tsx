@@ -39,7 +39,9 @@ const Tromb = ({ id }: { id: string }) => {
 
     return (
         <div className="max-w-5xl mx-auto">
-            
+
+            <h1 className="text-5xl font-bold text-center my-5">Trombinoscope - {data?.name}</h1>
+
             <div className="flex justify-center items-center gap-x-2 w-full">
                 <div className="flex items-center w-full relative py-5 ">
                     <input
@@ -69,7 +71,7 @@ const Tromb = ({ id }: { id: string }) => {
                 <FormCreatePerson trombId={id} person={undefined} onSuccess={onSuccess} />
             </Modal>
 
-            <ul role="list" className="space-y-2">
+            <ul role="list" className="space-y-2 mb-5">
                 {personsFiltered && personsFiltered.map((person: Person, index: number) => (
                     <PersonEl {...person} key={index} onChange={mutate} />
                 ))}

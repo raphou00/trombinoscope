@@ -13,6 +13,7 @@ const Page = async () => {
 
     return (
         <>
+            <h1 className="text-5xl font-bold text-center my-5">Trombinoscopes</h1>
             <Tromb trombs={trombs} />
         </>
     );
